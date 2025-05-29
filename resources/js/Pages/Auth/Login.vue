@@ -5,7 +5,7 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
 
 defineProps({
     canResetPassword: {
@@ -27,6 +27,15 @@ const submit = () => {
         onFinish: () => form.reset('password'),
     });
 };
+
+
+const { translation } = usePage().props
+
+function __(text){
+    return translation[text]
+}
+
+
 </script>
 
 <template>
@@ -92,7 +101,7 @@ const submit = () => {
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
-                    Log in
+                    {{ translation['Log in'] }}
                 </PrimaryButton>
             </div>
         </form>
